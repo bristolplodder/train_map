@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Google Maps JavaScript API Example: Simple Events</title>
+    <script src="//maps.google.com/maps?file=api&amp;v=2&amp;key=AIzaSyCITH6tAU5x0WRl_ugbVI--1HphdZdZcHo"
+            type="text/javascript"></script>
+    <script type="text/javascript">
+    function initialize() {
+      if (GBrowserIsCompatible()) {
+        var map = new GMap2(document.getElementById("map_canvas"));
+        map.setCenter(new GLatLng(51.5, -2.6), 10);
+        GEvent.addListener(map, "click", function() {
+          alert("You clicked the map.");
+         });
+      }
+    }  
+    </script>
+  </head>
+  <body onload="initialize()" onunload="GUnload()">
+    <div id="map_canvas" style="width: 750px; height: 750px"></div>
+    <div id="message"></div>
+  </body>
+</html>
