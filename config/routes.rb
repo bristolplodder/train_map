@@ -1,4 +1,5 @@
 TrainMap::Application.routes.draw do
+  get "static/map3"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

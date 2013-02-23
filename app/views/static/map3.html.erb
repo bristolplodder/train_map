@@ -1,0 +1,76 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+    <title>Google Maps AJAX + mySQL/PHP Example</title>
+    <script src="http://maps.google.com/maps/api/js?sensor=false"
+            type="text/javascript"></script>
+    <% load './convert1.rb' %>
+    <% load './setup1.rb' %>
+
+
+    <%= javascript_include_tag "map3.js" %>
+    <%= javascript_include_tag "label.js" %>
+  </head>
+
+  <body onload="load()">
+ 
+<% inout = []%>
+<% out6 = [] %>
+<% @out2 = setup(inout) %>
+<%= @out2.to_json %>
+<% out3 = @out2.to_json %>
+
+
+
+
+<script type="text/javascript">
+
+ var out4 = <%=@out2.to_json.html_safe %>
+
+
+var test1 = [[0,1,2],[3,4,5]];
+ user_id = <%=@out2[3][1] %>;
+var xfer1 = <%=@out2[3][4] %>;
+var xfer2 = <%=StanoxToName(@out2[0][1])[0] %>;
+var xfer3 = <%=StanoxToName(@out2[0][1])[1] %>;
+//abc(user_id)
+</script>
+
+
+ <table border="1">
+<tr>
+<th>Train Name </th>
+<th>Latest report</th>
+<th>Latest time</th>
+<th>Previous report</th>
+<th>Previous time</th>
+</tr>
+      <% @out2.each do |recent|%>
+        <tr>
+<!--remember to put back StanoxToName before recent [1 and [4]] -->
+        <td><%=recent[0]%></td><td> <%=StanoxToLatLon(recent[1])%></td><td> <%=recent[2]%></td>
+        
+        </tr>
+        <%out6.push [recent[0],StanoxToLatLon(recent[1]),recent[2]] %>
+      <%end%>                      
+</table>
+   
+   
+   <script type="text/javascript">
+
+ var out7 = <%=out6.to_json.html_safe %>
+
+</script> 
+  
+    <div id="map" style="width: 1250px; height: 750px" >
+    <script id="my_vars_json" type="text/json">
+    <%= @my_vars= [10] %>
+    <%= @my_vars.to_json %>
+    outage = <%= @out2.to_json %>
+    </script>
+    </div>
+
+    HELLO
+
+  </body>
+</html>
